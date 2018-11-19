@@ -12,8 +12,8 @@ import (
 func GetNews(w http.ResponseWriter, r *http.Request) {
 }
 
-//PostNews receives News and stores them and return the NewsItem IDs
-func PostNews(w http.ResponseWriter, r *http.Request) {
+//CreateNews receives News and stores them and return the NewsItem IDs
+func CreateNews(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "NEWS")
 }
 
@@ -33,7 +33,7 @@ func main() {
 	router := mux.NewRouter()
 	apiV1 := router.PathPrefix("/api/v1").Subrouter()
 	apiV1.HandleFunc("/news", GetNews).Methods("GET")
-	apiV1.HandleFunc("/news", PostNews).Methods("POST")
+	apiV1.HandleFunc("/news", CreateNews).Methods("POST")
 	apiV1.HandleFunc("/news/{ID}", GetNewsItem).Methods("GET")
 	apiV1.HandleFunc("/news/{ID}", OverwriteNewsItem).Methods("PUT")
 	apiV1.HandleFunc("/news/{ID}", EditNewsItem).Methods("PATCH")
